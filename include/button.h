@@ -2,6 +2,7 @@
 
 #define BUTTON_DOWN (1)
 #define BUTTON_UP (2)
+#define BUTTON_LONG (3)
 
 typedef struct {
 	uint8_t pin;

@@ -74,6 +74,7 @@ static void button_task(void *pvParameter)
             if (debounce[idx].down_time && (millis() - debounce[idx].down_time > LONG_PRESS_DURATION)) {
                 debounce[idx].down_time = 0;
                 ESP_LOGI(TAG, "%d LONG", debounce[idx].pin);
+                send_event(debounce[idx], BUTTON_LONG);
                 int i=0;
                 while (!button_up(&debounce[idx])) {
                     if (!i) send_event(debounce[idx], BUTTON_DOWN);
