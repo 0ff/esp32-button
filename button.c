@@ -77,7 +77,10 @@ static void button_task(void *pvParameter)
                 send_event(debounce[idx], BUTTON_LONG);
                 int i=0;
                 while (!button_up(&debounce[idx])) {
-                    if (!i) send_event(debounce[idx], BUTTON_DOWN);
+                    if (!i) {
+                        ESP_LOGI(TAG, "%d LONG_DOWN", debounce[idx].pin);
+                        send_event(debounce[idx], BUTTON_LONG_DOWN);
+                    }
                     i++;
                     if (i>=5) i=0;
                     vTaskDelay(10/portTICK_PERIOD_MS);
